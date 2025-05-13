@@ -102,7 +102,7 @@ class SpringSecurityJwtApplicationTests {
 
         String json = objectMapper.writeValueAsString(requestDto);
         mvc.perform(
-                MockMvcRequestBuilders.post("/api/v1/users/signUp")
+                MockMvcRequestBuilders.post("/signUp")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpectAll(MockMvcResultMatchers.status().isCreated());
@@ -120,7 +120,7 @@ class SpringSecurityJwtApplicationTests {
 
         String json = objectMapper.writeValueAsString(requestDto);
         mvc.perform(
-                MockMvcRequestBuilders.post("/api/v1/users/signUp")
+                MockMvcRequestBuilders.post("/signUp")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpectAll(MockMvcResultMatchers.status().isCreated());
@@ -139,7 +139,7 @@ class SpringSecurityJwtApplicationTests {
 
         String json = objectMapper.writeValueAsString(requestDto);
         mvc.perform(
-                MockMvcRequestBuilders.post("/api/v1/users/signUp")
+                MockMvcRequestBuilders.post("/signUp")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
@@ -157,7 +157,7 @@ class SpringSecurityJwtApplicationTests {
 
         String json = objectMapper.writeValueAsString(requestDto);
         mvc.perform(
-                MockMvcRequestBuilders.post("/api/v1/users/signUp")
+                MockMvcRequestBuilders.post("/signUp")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
@@ -174,7 +174,7 @@ class SpringSecurityJwtApplicationTests {
 
         String json = objectMapper.writeValueAsString(requestDto);
         mvc.perform(
-                MockMvcRequestBuilders.post("/api/v1/users/login")
+                MockMvcRequestBuilders.post("/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpectAll(MockMvcResultMatchers.status().isOk());
@@ -189,7 +189,7 @@ class SpringSecurityJwtApplicationTests {
 
         String json = objectMapper.writeValueAsString(requestDto);
         mvc.perform(
-                MockMvcRequestBuilders.post("/api/v1/users/login")
+                MockMvcRequestBuilders.post("/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -204,7 +204,7 @@ class SpringSecurityJwtApplicationTests {
 
         String json = objectMapper.writeValueAsString(requestDto);
         mvc.perform(
-                MockMvcRequestBuilders.post("/api/v1/users/login")
+                MockMvcRequestBuilders.post("/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpect(MockMvcResultMatchers.status().isUnauthorized());
@@ -221,7 +221,7 @@ class SpringSecurityJwtApplicationTests {
         setAuthenticationContext(admin);
 
         mvc.perform(
-                MockMvcRequestBuilders.patch("/api/v1/admin/users/{userId}/roles", user.getId())
+                MockMvcRequestBuilders.patch("/admin/users/{userId}/roles", user.getId())
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpectAll(MockMvcResultMatchers.status().isOk());
 
@@ -237,7 +237,7 @@ class SpringSecurityJwtApplicationTests {
 
         Long nonExistentUserId = 9999L;
         mvc.perform(
-                MockMvcRequestBuilders.patch("/api/v1/admin/users/{userId}/roles", nonExistentUserId)
+                MockMvcRequestBuilders.patch("/admin/users/{userId}/roles", nonExistentUserId)
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpectAll(MockMvcResultMatchers.status().isNotFound());
     }
@@ -251,7 +251,7 @@ class SpringSecurityJwtApplicationTests {
         setAuthenticationContext(normalUser);
 
         mvc.perform(
-                MockMvcRequestBuilders.patch("/api/v1/admin/users/{userId}/roles", user.getId())
+                MockMvcRequestBuilders.patch("/admin/users/{userId}/roles", user.getId())
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpectAll(MockMvcResultMatchers.status().isForbidden());
     }
