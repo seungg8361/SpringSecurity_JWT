@@ -31,12 +31,15 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public static User create(String username, String password, String nickname) {
+    public static User create(String username, String password, String nickname, UserRole role) {
         return User.builder()
                 .username(username)
                 .password(password)
                 .nickname(nickname)
-                .role(UserRole.USER)
+                .role(role)
                 .build();
+    }
+    public void update(UserRole role){
+        this.role = role;
     }
 }
