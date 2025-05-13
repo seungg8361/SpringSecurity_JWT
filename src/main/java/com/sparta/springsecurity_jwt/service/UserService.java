@@ -73,6 +73,7 @@ public class UserService {
                 .orElseThrow(()-> new CustomException(ResponseCode.USER_NOT_FOUND));
 
         user.update(UserRole.ADMIN);
+
         return UserInfoResponseDto.of(user);
     }
 }
