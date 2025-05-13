@@ -1,0 +1,6 @@
+jwt:
+  expiredAt: 7200000
+  secretKey: testjwtsecretkeytestjwtsecretkeytestjwtsecretkey
+
+admin:
+  code: iamadmin
