@@ -4,9 +4,12 @@ import com.sparta.springsecurity_jwt.dto.request.LoginRequestDto;
 import com.sparta.springsecurity_jwt.dto.request.SignUpRequestDto;
 import com.sparta.springsecurity_jwt.dto.response.LoginResponseDto;
 import com.sparta.springsecurity_jwt.dto.response.UserInfoResponseDto;
+import com.sparta.springsecurity_jwt.service.security.UserDetailsImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Tag(name = "유저 관련 API", description = "회원가입, 로그인, 권한 부여에 대한 API 명세서 입니다.")
@@ -17,4 +20,8 @@ public abstract class UserControllerDocs {
 
     @Operation(summary = "로그인", description = "사용자 로그인을 처리하고 토큰을 발급합니다.")
     abstract ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto requestDto);
+
+    @Operation(summary = "관리자 권한 부여", description = "사용자에게 관리자 권한을 부여합니다.")
+    abstract ResponseEntity<UserInfoResponseDto> changeRole(@PathVariable("userId") Long userId,
+                                                   @AuthenticationPrincipal UserDetailsImpl userDetails);
 }
