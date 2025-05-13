@@ -9,6 +9,17 @@
 4️⃣ 애플리케이션을 **AWS EC2**에 배포하고, 실제 환경에서 실행되도록 구성한다.
 <br><br>
 
+### 🛠️ 기술 스택
+* Java 17
+* Gradle
+* Spring Boot 3.4.5
+* H2 InMemory DB
+* JPA, Hibernate
+* Swagger
+* Spring Security & JWT
+
+<br><br>
+
 회원가입
 ```
 POST 0.0.0.0:8080/signup
