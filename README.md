@@ -9,6 +9,33 @@
 4️⃣ 애플리케이션을 **AWS EC2**에 배포하고, 실제 환경에서 실행되도록 구성한다.
 <br><br>
 
+회원가입
+```
+POST 0.0.0.0:8080/signup
+{
+"username": "JIN HO",
+"password": "12341234",
+"nickname": "Mentos"
+}
+```
+
+로그인
+```
+POST 0.0.0.0:8080/login
+{
+"username": "JIN HO",
+"password": "12341234"
+}
+```
+
+관리자 권한 부여 API
+```
+PATCH 0.0.0.0:8080/admin/users/{userId}/roles
+Header : Authorization : Bearer {token}
+```
+
+<br><br>
+
 ### Swagger UI 주소
 ```
 http://localhost:8080/swagger-ui/index.html
