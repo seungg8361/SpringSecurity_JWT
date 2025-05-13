@@ -17,13 +17,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1")
 @RequiredArgsConstructor
-public class UserController extends UserControllerDocs{
+public class UserController implements UserControllerDocs{
 
     private final UserService userService;
 
-    @PostMapping("/users/signUp")
+    @PostMapping("/signUp")
     public ResponseEntity<UserInfoResponseDto> signUp(@Valid @RequestBody SignUpRequestDto requestDto) {
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -31,7 +30,7 @@ public class UserController extends UserControllerDocs{
 
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto requestDto) {
 
         return ResponseEntity.ok()

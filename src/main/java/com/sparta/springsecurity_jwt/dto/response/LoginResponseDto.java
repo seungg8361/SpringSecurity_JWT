@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 public record LoginResponseDto(
 
-        @Schema(example = "Bearer Token",
+        @Schema(example = "Bearer {token}",
                 description = "로그인에 성공 시 발급되는 JWT token")
         String token
 ) {
