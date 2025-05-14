@@ -37,8 +37,7 @@ public class JwtUtil {
 
     // 토큰 생성
     public String createToken(User user) {
-        return BEARER_PREFIX +
-                Jwts.builder()
+        return Jwts.builder()
                         .setSubject(String.valueOf(user.getId()))
                         .claim("username", user.getUsername())
                         .claim("role", user.getRole())
