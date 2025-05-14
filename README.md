@@ -79,6 +79,38 @@ Authorization : Bearer {token}
     1. EC2에 Git clone 또는 pull
     2. `./gradlew build`
     3. `java -jar SpringSecurity_JWT-0.0.1-SNAPSHOT.jar`
+- 배포 절차 :
+```bash
+# 1. EC2 접속
+ssh -i "BackEndassignment.pem" ubuntu@ec2-43-201-70-222.ap-northeast-2.compute.amazonaws.com
+
+# 2. Git 설치 (Ubuntu 환경)
+sudo apt update
+sudo apt install git
+
+# 설치 확인
+git --version
+
+# 3. JDK 17 설치 (Ubuntu 환경)
+sudo apt update
+sudo apt install openjdk-17-jdk
+
+# 설치 확인
+java -version
+
+# 4. 프로젝트 클론 (최초 배포 시) 또는 Pull (업데이트 시)
+git clone git@github.com:seungg8361/SpringSecurity_JWT.git
+cd SpringSecurity_JWT
+
+# 또는 최신 커밋을 받을 때
+git pull origin main
+
+# 5. 빌드
+./gradlew build
+
+# 6. 애플리케이션 실행
+java -jar build/libs/SpringSecurity_JWT-0.0.1-SNAPSHOT.jar
+```
 
 ---
 ## 🧪 테스트
