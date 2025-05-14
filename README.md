@@ -90,14 +90,25 @@ Authorization : Bearer {token}
 ## 📜 프로젝트 구조
 ```
 SpringSecurity_JWT/
-├── controller/ # API 요청 처리
-├── service/ # 비즈니스 로직
-├── entity/ # JPA 엔티티 클래스
-├── dto/ # 요청/응답 DTO
-├── filter/ # JWT 필터 처리
-├── security/ # Security 설정
-├── util/ # JWT 유틸리티 등
-└── ...
+├── src/
+│   ├── main/
+│   │   ├── java/com/sparta/springsecurity_jwt/
+│   │   │   ├── common/           # 설정 및 예외
+│   │   │   ├── controller/       # API 요청 처리
+│   │   │   ├── domain/           # 엔티티
+│   │   │   ├── dto/              # 요청/응답 DTO
+│   │   │   ├── filter/           # JWT 필터 처리
+│   │   │   ├── repository/       # JPA Repository
+│   │   │   ├── service/          # 비즈니스 로직
+│   │   │   ├── util/             # JWT 유틸리티
+│   │   │   └── SpringSecurityJwtApplication.java 
+│   │   └── resources/            # application.yml
+│   │
+│   └── test/
+│       └── java/com/sparta/springsecurity_jwt/
+│           └── SpringSecurityJwtApplicationTests.java  # 테스트 클래스
+│
+└── build.gradle                  # Gradle 빌드 스크립트
 ```
 ---
 
