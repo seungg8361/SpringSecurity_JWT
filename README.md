@@ -22,7 +22,7 @@
 
 회원가입
 ```
-POST 0.0.0.0:8080/signup
+POST 43.201.70.222:8080/signup
 {
 "username": "JIN HO",
 "password": "12341234",
@@ -32,7 +32,7 @@ POST 0.0.0.0:8080/signup
 
 로그인
 ```
-POST 0.0.0.0:8080/login
+POST 43.201.70.222:8080/login
 {
 "username": "JIN HO",
 "password": "12341234"
@@ -41,7 +41,7 @@ POST 0.0.0.0:8080/login
 
 관리자 권한 부여 API
 ```
-PATCH 0.0.0.0:8080/admin/users/{userId}/roles
+PATCH 43.201.70.222:8080/admin/users/{userId}/roles
 Header : Authorization : Bearer {token}
 ```
 
@@ -49,5 +49,5 @@ Header : Authorization : Bearer {token}
 
 ### Swagger UI 주소
 ```
-http://localhost:8080/swagger-ui/index.html
+http://43.201.70.222:8080/docs
 ```

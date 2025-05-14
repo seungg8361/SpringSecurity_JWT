@@ -22,3 +22,7 @@ jwt:
 
 admin:
   code: iamadmin
+
+springdoc:
+  swagger-ui:
+    path: /docs
