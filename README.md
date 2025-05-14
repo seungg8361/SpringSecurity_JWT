@@ -75,10 +75,6 @@ Authorization : Bearer {token}
 
 - 인프라: AWS EC2 (Ubuntu)
 - 애플리케이션 포트: `8080`
-- 배포 방식:
-    1. EC2에 Git clone 또는 pull
-    2. `./gradlew build`
-    3. `java -jar SpringSecurity_JWT-0.0.1-SNAPSHOT.jar`
 - 배포 절차 :
 ```bash
 # 1. EC2 접속
