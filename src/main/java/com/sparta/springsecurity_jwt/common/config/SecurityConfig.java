@@ -1,11 +1,13 @@
 package com.sparta.springsecurity_jwt.common.config;
 
+import com.sparta.springsecurity_jwt.filter.CustomAccessDeniedHandler;
 import com.sparta.springsecurity_jwt.filter.JwtAuthenticationFilter;
 import com.sparta.springsecurity_jwt.service.security.UserDetailsServiceImpl;
 import com.sparta.springsecurity_jwt.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -16,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-//@EnableMethodSecurity PreAuthorize 사용 안함
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -37,6 +39,9 @@ public class SecurityConfig {
                     .anyRequest().authenticated();
         });
 
+        http.exceptionHandling(exception ->
+                exception.accessDeniedHandler(new CustomAccessDeniedHandler()));
+
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         http.sessionManagement(securityFilterChain ->
@@ -50,6 +55,11 @@ public class SecurityConfig {
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter(jwtUtil, userDetailsService);
+    }
+
+    @Bean
+    public CustomAccessDeniedHandler accessDeniedHandler(){
+        return new CustomAccessDeniedHandler();
     }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

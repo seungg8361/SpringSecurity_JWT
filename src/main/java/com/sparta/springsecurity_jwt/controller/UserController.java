@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,13 +39,10 @@ public class UserController implements UserControllerDocs{
     }
 
     @PatchMapping("/admin/users/{userId}/roles")
-//    @PreAuthorize("hasRole('ADMIN')") 접근 제한 메시지를 반환하기 위해 주석
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserInfoResponseDto> changeRole(@PathVariable("userId") Long userId,
                                                           @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        if (userDetails.getUser().getRole() != UserRole.ADMIN){
-            throw new CustomException(ResponseCode.ACCESS_DENIED);
-        }
         return ResponseEntity.ok()
                 .body(userService.changeRole(userId));
     }
