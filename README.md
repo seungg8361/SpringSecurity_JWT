@@ -94,7 +94,7 @@ sudo apt install openjdk-17-jdk
 # 설치 확인
 java -version
 
-# 4. 프로젝트 클론 (최초 배포 시) 또는 Pull (업데이트 시)
+# 4. 프로젝트 ssh 클론 (최초 배포 시) 또는 Pull (업데이트 시)
 git clone git@github.com:seungg8361/SpringSecurity_JWT.git
 cd SpringSecurity_JWT
 
