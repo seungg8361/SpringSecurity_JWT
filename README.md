@@ -116,6 +116,7 @@ SpringSecurity_JWT/
 
 - `Authorization` 헤더는 Bearer 타입으로 토큰을 전달해야 합니다.
 - EC2에서 프로젝트 pull 실수 시, 루트 디렉토리로 이동하여 다시 `git pull origin main` 실행하면 최신 상태로 갱신됩니다.
+- 인스턴스가 중지되는 경우 IP주소가 변경될 수 있는 점 참고 바랍니다.
   ```bash
   cd ~/.ssh/SpringSecurity_JWT
   git pull origin main
