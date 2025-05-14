@@ -1,11 +1,17 @@
 package com.sparta.springsecurity_jwt.common.config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
@@ -17,10 +23,11 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("User API Docs")
-                        .version("v1.0.0")
+                        .version("v3.0.1")
                         .description("유저 관련 API를 설명하는 문서입니다."))
+                .servers(List.of(new Server().url("http://43.201.70.222:8080").description("AWS EC2 Server")))
                 .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME))
-                .components(new io.swagger.v3.oas.models.Components()
+                .components(new Components()
                         .addSecuritySchemes(SECURITY_SCHEME_NAME, createBearerScheme()));
     }
 
