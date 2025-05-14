@@ -75,10 +75,10 @@ Authorization : Bearer {token}
 
 - 인프라: AWS EC2 (Ubuntu)
 - 애플리케이션 포트: `8080`
-- 배포 절차 :
+- 배포 절차는 다음을 참고해주세요.
 ```bash
-# 1. EC2 접속
-ssh -i "BackEndassignment.pem" ubuntu@ec2-43-201-70-222.ap-northeast-2.compute.amazonaws.com
+# 1. EC2 접속 (실제 pem 키 파일 경로 및 EC2 주소로 대체 필요)
+ssh -i "<your_private_key_path>.pem" <your_username>@<your_ec2_public_ip_or_dns>
 
 # 2. Git 설치 (Ubuntu 환경)
 sudo apt update
@@ -95,7 +95,7 @@ sudo apt install openjdk-17-jdk
 java -version
 
 # 4. 프로젝트 ssh 클론 (최초 배포 시) 또는 Pull (업데이트 시)
-git clone git@github.com:seungg8361/SpringSecurity_JWT.git
+git clone git@github.com:<your_github_username>/SpringSecurity_JWT.git
 cd SpringSecurity_JWT
 
 # 또는 최신 커밋을 받을 때
