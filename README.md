@@ -75,7 +75,7 @@ Content-Type: application/json
 }
 ```
 
-### 🛡️ 관리자 권한 부여
+### 🧑‍💼 관리자 권한 부여
 ```
 PATCH 43.203.192.5:8080/admin/users/{userId}/roles
 Headers : 
