@@ -161,7 +161,7 @@ SpringSecurity_JWT/
 ### 🔍 문제 현상
 
 - AWS EC2 (t2.micro) 환경에서 `./gradlew build` 명령 실행 시, 다음과 같은 오류 발생:
-
+<img src="https://github.com/user-attachments/assets/8e59960b-cf50-493d-a542-8f3215216253" />
 
 ### ⚠️ 원인 분석
 
