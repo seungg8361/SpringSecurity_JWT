@@ -156,7 +156,47 @@ SpringSecurity_JWT/
 └── build.gradle                                 # Gradle 빌드 스크립트
 ```
 ---
+## 🐛 트러블슈팅: EC2 환경에서 Gradle 테스트 중 OOM 발생
 
+### 🔍 문제 현상
+
+- AWS EC2 (t2.micro) 환경에서 `./gradlew build` 명령 실행 시, 다음과 같은 오류 발생:
+
+
+### ⚠️ 원인 분석
+
+- t2.micro 인스턴스는 기본적으로 **1GB RAM**만 제공
+- Gradle 빌드 시 실행되는 JUnit 테스트가 **JVM의 Heap 메모리를 초과**
+- EC2 인스턴스는 **Swap 영역이 기본적으로 비활성화**되어 있어, 메모리 부족 시 시스템이 바로 실패함
+
+
+### ✅ 해결 방법
+
+#### 🔧 Swap 공간 수동 생성 (임시 메모리 확장)
+
+```bash
+# 1. 빈 파일 생성 (128MB * 16 = 2GB)
+sudo dd if=/dev/zero of=/swapfile bs=128M count=16
+
+# 2. 스왑 파일에 대한 읽기 및 쓰기 권한을 업데이트
+sudo chmod 600 /swapfile
+ 
+# 3. Linux Swap 영역으로 초기화
+sudo mkswap /swapfile
+
+# 4. Swap 활성화
+sudo swapon /swapfile
+
+# 5. 정상 활성화 확인
+swapon -s
+
+# 6. /etc/fstab 파일을 편집해서 부팅 시 스왑 파일을 활성화
+sudo vi /etc/fstab
+
+# 파일 끝에 다음 줄을 새로 추가하고 저장
+-> /swapfile swap swap defaults 0 0 
+```
+---
 ## 💡 기타 참고사항
 
 - `Authorization` 헤더는 Bearer 타입으로 토큰을 전달해야 합니다.
