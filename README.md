@@ -32,7 +32,7 @@ Swagger를 통한 API 문서화와 테스트 코드 작성을 포함하여 실�
 
 ## 📄 API 문서 (Swagger)
 
-- [http://43.201.70.222:8080/docs](http://43.201.70.222:8080/docs)
+- [http://43.203.192.5:8080/docs](http://43.203.192.5:8080/docs)
 - Swagger를 통해 API를 테스트하고 문서를 확인할 수 있습니다.
 
 ---
@@ -40,7 +40,7 @@ Swagger를 통한 API 문서화와 테스트 코드 작성을 포함하여 실�
 
 ## 📇 데이터베이스 접속
 
-- [http://43.201.70.222:8080/h2-console](http://43.201.70.222:8080/h2-console)
+- [http://43.203.192.5:8080/h2-console](http://43.203.192.5:8080/h2-console)
 ```
 JDBC URL : jdbc:h2:mem:testdb
 User Name : sa
@@ -56,7 +56,7 @@ Password : <없음>
 
 
 ```
-POST 43.201.70.222:8080/signup
+POST 43.203.192.5:8080/signup
 Content-Type: application/json
 {
 "username": "JIN HO",
@@ -67,7 +67,7 @@ Content-Type: application/json
 
 ### 🔐 로그인
 ```
-POST 43.201.70.222:8080/login
+POST 43.203.192.5:8080/login
 Content-Type: application/json
 {
 "username": "JIN HO",
@@ -77,7 +77,7 @@ Content-Type: application/json
 
 ### 🛡️ 관리자 권한 부여
 ```
-PATCH 43.201.70.222:8080/admin/users/{userId}/roles
+PATCH 43.203.192.5:8080/admin/users/{userId}/roles
 Headers : 
 Authorization : Bearer {token}
 ```
@@ -114,7 +114,11 @@ cd SpringSecurity_JWT
 # 또는 최신 커밋을 받을 때
 git pull origin main
 
-# 5. 빌드
+# 5. 환경 변수 설정 (.env 파일 생성)
+cd src/main/resources
+nano .env
+
+# 6. 빌드
 ./gradlew build
 
 # 6. 애플리케이션 실행
@@ -156,8 +160,9 @@ SpringSecurity_JWT/
 ## 💡 기타 참고사항
 
 - `Authorization` 헤더는 Bearer 타입으로 토큰을 전달해야 합니다.
-- EC2에서 프로젝트 pull 실수 시, 루트 디렉토리로 이동하여 다시 `git pull origin main` 실행하면 최신 상태로 갱신됩니다.
-- 인스턴스가 중지되는 경우 IP주소가 변경될 수 있는 점 참고 바랍니다.
+- EC2에서 프로젝트 pull 후 .env 파일 설정이 필요합니다. .env 파일은 .gitignore에 추가되어 있어 git을 통해 공유되지 않습니다.
+- 프로젝트 업데이트 및 .env 파일 유지하기 :
   ```bash
   cd ~/.ssh/SpringSecurity_JWT
   git pull origin main
+- 인스턴스가 중지되는 경우 IP주소가 변경될 수 있는 점 참고 바랍니다.
