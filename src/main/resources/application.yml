@@ -1,30 +1,28 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT}
 
 spring:
-  application:
-    name: SpringSecurity_JWT
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   h2:
     console:
-      path: /h2-console
+      path: ${DB_CONSOLE}
       enabled: true
       settings:
         web-allow-others: true
   jpa:
     hibernate:
       ddl-auto: create
+
 jwt:
-  expiredAt: 7200000
-  secretKey: testjwtsecretkeytestjwtsecretkeytestjwtsecretkey
+  expiredAt: ${JWT_EXPIRED}
+  secretKey: ${JWT_SECRET}
 
 admin:
-  code: iamadmin
+  code: ${ADMIN_CODE}
 
 springdoc:
   swagger-ui:
-    path: /docs
+    path: ${SWAGGER_UI_PATH}

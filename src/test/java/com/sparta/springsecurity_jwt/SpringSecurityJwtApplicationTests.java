@@ -30,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-@ActiveProfiles("test")
 class SpringSecurityJwtApplicationTests {
 
     @Autowired
