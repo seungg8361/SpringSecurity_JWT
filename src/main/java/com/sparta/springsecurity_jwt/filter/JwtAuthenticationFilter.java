@@ -8,7 +8,6 @@ import com.sparta.springsecurity_jwt.service.security.UserDetailsServiceImpl;
 import com.sparta.springsecurity_jwt.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +29,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+                                    FilterChain filterChain) throws IOException {
         try {
             String authHeader = request.getHeader("Authorization");
 
@@ -39,12 +38,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 Claims claims = jwtUtil.getClaimsFromToken(token);
                 String username = claims.get("username", String.class);
 
+                // SecurityContext 에 인증 정보가 없는 경우에만 처리
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                    // UserDetails 구현체 반환
                     UserDetailsImpl userDetails = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
 
+                    // 사용자 정보를 기반으로 인증 객체 생성
                     UsernamePasswordAuthenticationToken authToken =
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
+                    // 인증 객체를 SecurityContext 에 저장하여 인증 완료 처리
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
             }

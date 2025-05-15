@@ -216,7 +216,7 @@ class SpringSecurityJwtApplicationTests {
 
     @Test
     @DisplayName("관리자 권한 부여 성공 테스트")
-    public void access_RoleSuccessTest() throws Exception {
+    public void grantAdminRoleSuccessTest() throws Exception {
         User user = createNormalUser("user");
 
         User admin = createAdminUser("adminUser");
@@ -233,7 +233,7 @@ class SpringSecurityJwtApplicationTests {
 
     @Test
     @DisplayName("관리자 권한 부여 실패 테스트 - 존재하지 않는 유저")
-    public void access_RoleFailTest_USER_NOT_FOUND() throws Exception {
+    public void grantAdminRoleFailTest_USER_NOT_FOUND() throws Exception {
         User admin = createAdminUser("adminUser");
         setAuthenticationContext(admin);
 
@@ -246,7 +246,7 @@ class SpringSecurityJwtApplicationTests {
 
     @Test
     @DisplayName("관리자 권한 부여 실패 테스트 - 접근 권한이 없음")
-    public void access_RoleFailTest_ACCESS_DENIED() throws Exception {
+    public void grantAdminRoleFailTest_ACCESS_DENIED() throws Exception {
         User user = createNormalUser("user");
 
         User normalUser = createNormalUser("normalUser");

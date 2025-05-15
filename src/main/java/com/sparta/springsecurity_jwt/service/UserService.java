@@ -68,7 +68,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserInfoResponseDto changeRole(Long userId) {
+    public UserInfoResponseDto grantAdminRole(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new CustomException(ResponseCode.USER_NOT_FOUND));
 

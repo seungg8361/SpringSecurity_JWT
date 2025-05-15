@@ -1,8 +1,5 @@
 package com.sparta.springsecurity_jwt.controller;
 
-import com.sparta.springsecurity_jwt.common.exception.CustomException;
-import com.sparta.springsecurity_jwt.common.exception.ResponseCode;
-import com.sparta.springsecurity_jwt.domain.UserRole;
 import com.sparta.springsecurity_jwt.dto.request.LoginRequestDto;
 import com.sparta.springsecurity_jwt.dto.request.SignUpRequestDto;
 import com.sparta.springsecurity_jwt.dto.response.LoginResponseDto;
@@ -40,10 +37,10 @@ public class UserController implements UserControllerDocs{
 
     @PatchMapping("/admin/users/{userId}/roles")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<UserInfoResponseDto> changeRole(@PathVariable("userId") Long userId,
+    public ResponseEntity<UserInfoResponseDto> grantAdminRole(@PathVariable("userId") Long userId,
                                                           @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         return ResponseEntity.ok()
-                .body(userService.changeRole(userId));
+                .body(userService.grantAdminRole(userId));
     }
 }

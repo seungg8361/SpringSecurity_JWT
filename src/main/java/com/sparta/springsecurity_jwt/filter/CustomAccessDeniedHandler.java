@@ -16,12 +16,13 @@ import java.util.Map;
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    // 접근 권한이 없을 때 실행되는 메서드
     @Override
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException {
 
-        response.setStatus(ResponseCode.ACCESS_DENIED.getStatus().value());
+        response.setStatus(ResponseCode.ACCESS_DENIED.getStatus().value()); // 403 Forbidden
         response.setContentType("application/json;charset=UTF-8");
 
         Map<String, Object> errorBody = new HashMap<>();

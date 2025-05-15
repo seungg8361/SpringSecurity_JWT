@@ -75,6 +75,6 @@ public interface UserControllerDocs {
                             examples = @ExampleObject(value = "{\"error\": {\"code\": \"USER_NOT_FOUND\", \"message\": \"존재하지 않는 사용자입니다.\"}}")
                     ))
     })
-    ResponseEntity<UserInfoResponseDto> changeRole(@PathVariable("userId") Long userId,
+    ResponseEntity<UserInfoResponseDto> grantAdminRole(@PathVariable("userId") Long userId,
                                                    @AuthenticationPrincipal UserDetailsImpl userDetails);
 }

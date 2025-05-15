@@ -27,23 +27,27 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // CSRF 비활성화
         http.csrf(AbstractHttpConfigurer::disable);
 
+        // 보안 헤더 설정 비활성화 (H2 콘솔 접근)
         http.headers(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(authorizeRequests -> {
             authorizeRequests.
-                    requestMatchers("/signUp", "/login", "/admin/users/**").permitAll()
+                    requestMatchers("/signUp", "/login").permitAll()
                     .requestMatchers("/v3/api-docs/**", "/docs", "/swagger-ui/**").permitAll()
                     .requestMatchers("/h2-console/**").permitAll()
                     .anyRequest().authenticated();
         });
 
+        // 인가 실패 시(권한 부족) 예외 핸들러 설정
         http.exceptionHandling(exception ->
                 exception.accessDeniedHandler(new CustomAccessDeniedHandler()));
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
+        // 세션을 사용하지 않도록 Stateless 설정 (JWT 기반 인증이므로 세션 불필요)
         http.sessionManagement(securityFilterChain ->
                 securityFilterChain.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
